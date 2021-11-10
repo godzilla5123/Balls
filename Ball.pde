@@ -6,13 +6,29 @@ class Ball {
   public Ball(float bX, float bY) {
     ballX = bX;
     ballY = bY;
-    ballSize = random(20, 80);
+    ballSize = random(5, 20);
     ballColor = color(random(255), random(255), random(255));
     ballVelocityX = random(-10, 10);
     ballVelocityY = random(-10, 10);
-    ballDirection = random(0, 2 * PI);
   }
 
+  public boolean ballTouching(Ball otherBall)
+  {
+    if (otherBall == null) {
+      return false;
+    } else {
+
+      float disX = ballX - otherBall.ballX;
+      float disY = ballY - otherBall.ballY;
+      if (sqrt(sq(disX) + sq(disY)) < ballSize / 2 ) {
+        println("my balls touched");
+        return true;
+      } else {
+        return false;
+      }
+    }
+    //ballX == otherBall.ballX
+  }
 
   public void drawBall() {
     //print("Ball cord:" + ballX + ", " + ballY);
