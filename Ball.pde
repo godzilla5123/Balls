@@ -1,12 +1,11 @@
 class Ball {
-
   private float ballSize, ballX, ballY, ballVelocityX, ballVelocityY, ballDirection;
   private color ballColor;
 
   public Ball(float bX, float bY) {
     ballX = bX;
     ballY = bY;
-    ballSize = random(5, 20);
+    ballSize = random(50, 150);
     ballColor = color(random(255), random(255), random(255));
     ballVelocityX = random(-10, 10);
     ballVelocityY = random(-10, 10);
@@ -18,9 +17,7 @@ class Ball {
       return false;
     } else {
 
-      float disX = ballX - otherBall.ballX;
-      float disY = ballY - otherBall.ballY;
-      if (sqrt(sq(disX) + sq(disY)) < ballSize / 2 ) {
+      if (dist(ballX, ballY, otherBall.ballX, otherBall.ballY) <= (ballSize / 2) + (otherBall.ballSize / 2)) {
         println("my balls touched");
         return true;
       } else {
@@ -47,6 +44,19 @@ class Ball {
     } else if (ballY <= (ballSize / 2) || ballY >= height -(ballSize / 2)) {
       ballVelocityY = ballVelocityY * -1;
       //print("ballY changed");
+    }
+  }
+
+  public void ballDecay() {
+    if (ballSize >= 200) {
+      println("ball is big and is " + ballSize + " big");
+      ballSize = ballSize * .9995;
+      if (ballVelocityX <= 20) {      
+        ballVelocityX += ballVelocityX * .005;
+      }
+      if (ballVelocityY <= 20) {      
+        ballVelocityY += ballVelocityY * .005;
+      }
     }
   }
 }
