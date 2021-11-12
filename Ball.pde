@@ -5,10 +5,10 @@ class Ball {
   public Ball(float bX, float bY) {
     ballX = bX;
     ballY = bY;
-    ballSize = random(50, 150);
+    ballSize = random(10, 40);
     ballColor = color(random(255), random(255), random(255));
-    ballVelocityX = random(-10, 10);
-    ballVelocityY = random(-10, 10);
+    ballVelocityX = random(-5, 5);
+    ballVelocityY = random(-5, 5);
   }
 
   public boolean ballTouching(Ball otherBall)
@@ -48,13 +48,13 @@ class Ball {
   }
 
   public void ballDecay() {
-    if (ballSize >= 200) {
+    if (ballSize >= 150) {
       println("ball is big and is " + ballSize + " big");
       ballSize = ballSize * .9995;
-      if (ballVelocityX <= 20) {      
+      if (ballVelocityX <= 15) {      
         ballVelocityX += ballVelocityX * .005;
       }
-      if (ballVelocityY <= 20) {      
+      if (ballVelocityY <= 15) {      
         ballVelocityY += ballVelocityY * .005;
       }
     }
